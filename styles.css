@@ -450,6 +450,24 @@ canvas {
   }
 }
 
+@media (display-mode: standalone) and (orientation: portrait) and (max-width: 720px) and (min-height: 700px) {
+  .game-shell {
+    grid-template-rows: auto auto minmax(0, 1fr);
+    align-content: stretch;
+    min-height: 100dvh;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3dvh, 24px));
+  }
+
+  .controls {
+    align-self: stretch;
+    grid-template-rows: auto minmax(max-content, 1fr);
+  }
+
+  .dpad {
+    align-self: end;
+  }
+}
+
 @media (max-height: 480px) and (max-width: 960px) {
   html,
   body {
