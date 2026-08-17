@@ -20,11 +20,13 @@ Stage 2 - First gameplay bugfix.
 - Updated the food drawing so the collectible grid cell is visibly marked.
 - Added a regression test for eating one white food orb.
 - Verified `node --check game.js`, `node --check tests/food-scoring.test.js`, and `node tests/food-scoring.test.js`.
+- Pushed bugfix branch `fix/food-scoring` to GitHub without merging into `main`.
+- Opened the fixed local `index.html` for desktop playtest.
 
 ## Status
 
-Food scoring bugfix is verified locally and awaiting push.
+Food scoring bugfix is pushed and ready for desktop playtest.
 
 ## Next Best Action
 
-Push `fix/food-scoring` and open the fixed game for desktop playtest.
+Playtest the fixed food target and confirm that eating a white orb increases score, grows the snake, and respawns food.
