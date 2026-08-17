@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 3 - GitHub Pages mobile playtest deployment.
+Stage 4 - Mobile controls and interface alignment.
 
 ## Completed
 
@@ -23,11 +23,16 @@ Stage 3 - GitHub Pages mobile playtest deployment.
 - Verified `index.html`, `styles.css`, and `game.js` load from GitHub Pages.
 - Desktop smoke test passed on the deployed site: Start, Pause, Restart, canvas presence, CSS loading, and no console errors.
 - Confirmed common local-only paths such as `.git/config` and `.DS_Store` are not exposed by GitHub Pages.
+- Stage 4 mobile UX adjustment deployed to GitHub Pages.
+- Direction buttons are larger circular touch targets, right-aligned for thumb reach, and spaced consistently.
+- Mobile interface rail alignment verified at 360, 390, and 430 CSS-pixel portrait widths plus matching landscape checks.
+- Verified movement, D-pad direction input, rapid direction changes, swipe movement, food, score, growth, collision, pause, restart, Play Again, modal readability, and desktop layout preservation.
+- Final real-phone confirmation is pending.
 
 ## Status
 
-GitHub Pages deployment is live and ready for mobile playtesting.
+Stage 4 deployment is live and ready for final real-phone confirmation.
 
 ## Next Best Action
 
-Open the GitHub Pages URL on a phone and test mobile layout, swipe controls, on-screen direction buttons, scoring, pause, and restart.
+Open the GitHub Pages URL on a phone and confirm the larger right-aligned circular controls feel correct in portrait and landscape.
