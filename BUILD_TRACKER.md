@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 10 - Frost Slide Pad controller.
+Stage 11 - Full touchscreen steering zone.
 
 ## Completed
 
@@ -46,12 +46,15 @@ Stage 10 - Frost Slide Pad controller.
 - Stage 10 Frost Slide Pad deployed to GitHub Pages.
 - Replaced the mobile four-button D-pad with a single framed `SLIDE TO STEER` controller using pointer gestures, a deliberate movement threshold, dominant-axis direction resolution, edge-arrow feedback, and a central frosted puck.
 - Verified all four slide directions, diagonal resolution, below-threshold rejection, alternating pointer input, pointer cancellation reset, board swipe preservation, keyboard input, normal browser layout, simulated standalone layout, landscape layout, desktop layout preservation, live GitHub Pages assets, and gameplay regression checks.
+- Stage 11 full touchscreen steering zone deployed to GitHub Pages.
+- Replaced the joystick-like Slide Pad with a quiet full-width lower touch surface that fills the available mobile control area, uses the static `Slide anywhere to steer` sign, and removes puck movement, large arrows, direction flashes, and input-reactive glow.
+- Verified top-left, top-right, center, bottom-left, and bottom-right gesture starts; all four directions; diagonals; threshold timing; taps and short moves; alternating pointer input; pointer cancellation; board swipe preservation; keyboard input; normal browser layout; simulated standalone layout; landscape layout; desktop layout preservation; live GitHub Pages assets; and gameplay regression checks.
 - Real-phone confirmation is pending.
 
 ## Status
 
-Stage 10 deployment is live and ready for real-phone Frost Slide Pad gesture confirmation.
+Stage 11 deployment is live and ready for real-phone full touchscreen steering confirmation.
 
 ## Next Best Action
 
-Close and reopen the installed Brave app, then confirm the Frost Slide Pad steers comfortably with either thumb and does not introduce scrolling, clipping, or overlap.
+Close and reopen the installed Brave app, then confirm the full lower touch zone steers comfortably from anywhere inside the framed surface without scrolling, clipping, or overlap.
