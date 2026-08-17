@@ -432,7 +432,7 @@ canvas {
     grid-template-columns: repeat(3, var(--mobile-control));
     grid-template-rows: repeat(2, var(--mobile-control));
     gap: var(--mobile-dpad-gap);
-    justify-self: end;
+    justify-self: center;
     touch-action: none;
   }
 
@@ -628,7 +628,7 @@ canvas {
     grid-template-columns: repeat(3, var(--landscape-control));
     grid-template-rows: repeat(2, var(--landscape-control));
     gap: var(--landscape-dpad-gap);
-    justify-self: end;
+    justify-self: center;
     touch-action: none;
   }
 
