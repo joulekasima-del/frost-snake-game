@@ -25,10 +25,12 @@ body {
   background:
     radial-gradient(circle at 50% 0%, rgba(24, 215, 255, 0.18), transparent 34rem),
     linear-gradient(180deg, #050914 0%, var(--bg) 55%, #02040a 100%);
+  overflow-x: hidden;
 }
 
 button {
   font: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .game-shell {
@@ -248,12 +250,15 @@ canvas {
   grid-template-columns: repeat(3, 48px);
   grid-template-rows: repeat(2, 48px);
   gap: 8px;
+  user-select: none;
 }
 
 .dpad button {
   min-width: 48px;
   min-height: 48px;
   font-size: 1.25rem;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .dpad button[data-dir="up"] {
@@ -283,13 +288,19 @@ canvas {
 }
 
 @media (max-width: 720px) {
+  .game-shell {
+    padding: clamp(16px, 4.4vw, 18px);
+  }
+
   .hud {
     display: grid;
     align-items: stretch;
+    gap: 12px;
   }
 
   .stats {
     width: 100%;
+    gap: 8px;
   }
 
   .board-wrap {
@@ -298,27 +309,109 @@ canvas {
 
   .controls {
     grid-template-columns: 1fr;
-    justify-items: center;
+    justify-items: stretch;
+    width: 100%;
+    gap: 16px;
+    margin-top: 16px;
   }
 
   .action-row {
     width: 100%;
+    gap: 10px;
   }
 
   .action-row button {
     flex: 1 1 120px;
   }
 
+  .dpad {
+    grid-template-columns: repeat(3, clamp(56px, 18vw, 72px));
+    grid-template-rows: repeat(2, clamp(56px, 18vw, 72px));
+    gap: clamp(12px, 3.5vw, 16px);
+    justify-self: end;
+    touch-action: none;
+  }
+
+  .dpad button {
+    display: grid;
+    place-items: center;
+    min-width: 56px;
+    min-height: 56px;
+    width: clamp(56px, 18vw, 72px);
+    height: clamp(56px, 18vw, 72px);
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.55rem;
+    line-height: 1;
+    touch-action: none;
+  }
+
   .control-note {
-    text-align: center;
+    text-align: left;
+  }
+}
+
+@media (max-height: 480px) and (max-width: 960px) {
+  .game-shell {
+    padding: clamp(16px, 2.5vw, 24px);
+  }
+
+  .hud {
+    display: grid;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .stats {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    width: 100%;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .action-row {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .action-row button {
+    flex: 1 1 120px;
+  }
+
+  .dpad {
+    grid-template-columns: repeat(3, 72px);
+    grid-template-rows: repeat(2, 72px);
+    gap: 16px;
+    justify-self: end;
+    touch-action: none;
+  }
+
+  .dpad button {
+    display: grid;
+    place-items: center;
+    min-width: 56px;
+    min-height: 56px;
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.55rem;
+    line-height: 1;
+    touch-action: none;
+  }
+
+  .control-note {
+    text-align: left;
   }
 }
 
 @media (max-width: 420px) {
-  .game-shell {
-    padding: 10px;
-  }
-
   .stats {
     grid-template-columns: repeat(3, 1fr);
   }
