@@ -19,7 +19,7 @@ const overlayText = document.getElementById("overlayText");
 const startButton = document.getElementById("startButton");
 const pauseButton = document.getElementById("pauseButton");
 const restartButton = document.getElementById("restartButton");
-const slidePad = document.getElementById("slidePad");
+const touchZone = document.getElementById("touchZone");
 
 const directions = {
   up: { x: 0, y: -1 },
@@ -44,11 +44,9 @@ let accumulator = 0;
 let lastFrame = 0;
 let pulse = 0;
 let touchStart = null;
-let slideGesture = null;
-let slideFlashTimeout = 0;
+let touchZoneGesture = null;
 
 const SLIDE_THRESHOLD = 26;
-const SLIDE_PUCK_LIMIT = 30;
 
 function sameCell(a, b) {
   return a.x === b.x && a.y === b.y;
@@ -519,127 +517,73 @@ function getSlideDirection(dx, dy) {
   return dy > 0 ? "down" : "up";
 }
 
-function updateSlidePuck(dx, dy) {
-  if (!slidePad) {
+function sendTouchZoneDirection(event) {
+  if (!touchZoneGesture || event.pointerId !== touchZoneGesture.pointerId || touchZoneGesture.sent) {
     return;
   }
 
-  const x = Math.max(-SLIDE_PUCK_LIMIT, Math.min(SLIDE_PUCK_LIMIT, dx * 0.36));
-  const y = Math.max(-SLIDE_PUCK_LIMIT, Math.min(SLIDE_PUCK_LIMIT, dy * 0.36));
-  const recognized = getSlideDirection(dx, dy);
+  const directionName = getSlideDirection(event.clientX - touchZoneGesture.startX, event.clientY - touchZoneGesture.startY);
 
-  slidePad.style.setProperty("--puck-x", `${x}px`);
-  slidePad.style.setProperty("--puck-y", `${y}px`);
-
-  if (recognized) {
-    slidePad.dataset.activeDir = recognized;
-  } else {
-    delete slidePad.dataset.activeDir;
+  if (directionName) {
+    touchZoneGesture.sent = true;
+    setDirection(directionName);
   }
 }
 
-function resetSlidePadFeedback() {
-  if (!slidePad) {
-    return;
-  }
-
-  slidePad.classList.remove("is-dragging");
-  slidePad.style.setProperty("--puck-x", "0px");
-  slidePad.style.setProperty("--puck-y", "0px");
-  delete slidePad.dataset.activeDir;
-}
-
-function flashSlidePadAccepted(directionName) {
-  if (!slidePad) {
-    return;
-  }
-
-  if (slideFlashTimeout) {
-    window.clearTimeout(slideFlashTimeout);
-  }
-
-  slidePad.dataset.activeDir = directionName;
-  slidePad.classList.add("is-accepted");
-
-  slideFlashTimeout = window.setTimeout(() => {
-    slidePad.classList.remove("is-accepted");
-    delete slidePad.dataset.activeDir;
-    slideFlashTimeout = 0;
-  }, 150);
-}
-
-function handleSlidePointerDown(event) {
-  if (!slidePad || slideGesture) {
+function handleTouchZonePointerDown(event) {
+  if (!touchZone || touchZoneGesture) {
     return;
   }
 
   event.preventDefault();
-
-  if (slideFlashTimeout) {
-    window.clearTimeout(slideFlashTimeout);
-    slideFlashTimeout = 0;
-  }
-
-  slidePad.classList.remove("is-accepted");
-  slideGesture = {
+  touchZoneGesture = {
     pointerId: event.pointerId,
     startX: event.clientX,
     startY: event.clientY,
+    sent: false,
   };
 
-  slidePad.classList.add("is-dragging");
-  slidePad.focus({ preventScroll: true });
-  updateSlidePuck(0, 0);
+  touchZone.focus({ preventScroll: true });
 
-  if (slidePad.setPointerCapture) {
-    slidePad.setPointerCapture(event.pointerId);
+  if (touchZone.setPointerCapture) {
+    touchZone.setPointerCapture(event.pointerId);
   }
 }
 
-function handleSlidePointerMove(event) {
-  if (!slideGesture || event.pointerId !== slideGesture.pointerId) {
+function handleTouchZonePointerMove(event) {
+  if (!touchZoneGesture || event.pointerId !== touchZoneGesture.pointerId) {
     return;
   }
 
   event.preventDefault();
-  updateSlidePuck(event.clientX - slideGesture.startX, event.clientY - slideGesture.startY);
+  sendTouchZoneDirection(event);
 }
 
-function endSlideGesture(event) {
-  if (!slideGesture || event.pointerId !== slideGesture.pointerId) {
+function endTouchZoneGesture(event) {
+  if (!touchZoneGesture || event.pointerId !== touchZoneGesture.pointerId) {
     return;
   }
 
   event.preventDefault();
+  sendTouchZoneDirection(event);
 
-  const dx = event.clientX - slideGesture.startX;
-  const dy = event.clientY - slideGesture.startY;
-  const directionName = getSlideDirection(dx, dy);
-
-  if (slidePad && slidePad.releasePointerCapture && slidePad.hasPointerCapture?.(event.pointerId)) {
-    slidePad.releasePointerCapture(event.pointerId);
+  if (touchZone && touchZone.releasePointerCapture && touchZone.hasPointerCapture?.(event.pointerId)) {
+    touchZone.releasePointerCapture(event.pointerId);
   }
 
-  slideGesture = null;
-  resetSlidePadFeedback();
-
-  if (directionName) {
-    setDirection(directionName);
-    flashSlidePadAccepted(directionName);
-  }
+  touchZoneGesture = null;
 }
 
-function cancelSlideGesture(event) {
-  if (!slideGesture || event.pointerId !== slideGesture.pointerId) {
+function cancelTouchZoneGesture(event) {
+  if (!touchZoneGesture || event.pointerId !== touchZoneGesture.pointerId) {
     return;
   }
 
-  if (slidePad && slidePad.releasePointerCapture && slidePad.hasPointerCapture?.(event.pointerId)) {
-    slidePad.releasePointerCapture(event.pointerId);
+  if (touchZone && touchZone.releasePointerCapture && touchZone.hasPointerCapture?.(event.pointerId)) {
+    touchZone.releasePointerCapture(event.pointerId);
   }
 
-  slideGesture = null;
-  resetSlidePadFeedback();
+  touchZoneGesture = null;
 }
 
 document.addEventListener("keydown", handleKey);
@@ -656,12 +600,12 @@ document.addEventListener("visibilitychange", () => {
 canvas.addEventListener("touchstart", handleTouchStart, { passive: true });
 canvas.addEventListener("touchend", handleTouchEnd, { passive: true });
 
-if (slidePad) {
-  slidePad.addEventListener("pointerdown", handleSlidePointerDown);
-  slidePad.addEventListener("pointermove", handleSlidePointerMove);
-  slidePad.addEventListener("pointerup", endSlideGesture);
-  slidePad.addEventListener("pointercancel", cancelSlideGesture);
-  slidePad.addEventListener("lostpointercapture", cancelSlideGesture);
+if (touchZone) {
+  touchZone.addEventListener("pointerdown", handleTouchZonePointerDown);
+  touchZone.addEventListener("pointermove", handleTouchZonePointerMove);
+  touchZone.addEventListener("pointerup", endTouchZoneGesture);
+  touchZone.addEventListener("pointercancel", cancelTouchZoneGesture);
+  touchZone.addEventListener("lostpointercapture", cancelTouchZoneGesture);
 }
 
 startButton.addEventListener("click", startGame);

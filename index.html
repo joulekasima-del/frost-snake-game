@@ -64,16 +64,18 @@
           <button type="button" id="restartButton">Restart</button>
         </div>
 
-        <div class="slide-pad" id="slidePad" role="group" tabindex="0" aria-label="Slide directional control. Swipe up, down, left, or right to steer.">
-          <span class="slide-label" aria-hidden="true">SLIDE TO STEER</span>
-          <span class="slide-arrow slide-arrow-up" data-slide-dir="up" aria-hidden="true">&uarr;</span>
-          <span class="slide-arrow slide-arrow-left" data-slide-dir="left" aria-hidden="true">&larr;</span>
-          <span class="slide-arrow slide-arrow-down" data-slide-dir="down" aria-hidden="true">&darr;</span>
-          <span class="slide-arrow slide-arrow-right" data-slide-dir="right" aria-hidden="true">&rarr;</span>
-          <span class="slide-puck" aria-hidden="true"></span>
+        <div class="touch-zone" id="touchZone" role="group" tabindex="0" aria-label="Touch steering zone. Slide up, down, left, or right to steer.">
+          <div class="touch-sign" aria-hidden="true">
+            <svg viewBox="0 0 72 72" focusable="false">
+              <path d="M36 12v8M36 52v8M12 36h8M52 36h8" />
+              <path d="M25 44c0-5 3-8 7-8h2V22c0-3 2-5 5-5s5 2 5 5v18l5 2c4 2 6 6 5 11l-1 5H30l-4-9c-1-2-1-4-1-5Z" />
+              <path d="M28 30c-3 2-5 5-5 9M46 30c3 2 5 5 5 9" />
+            </svg>
+            <span>Slide anywhere to steer</span>
+          </div>
         </div>
 
-        <p class="control-note">Desktop: arrow keys or WASD. Mobile: swipe on the board or use the Slide Pad.</p>
+        <p class="control-note">Desktop: arrow keys or WASD. Mobile: swipe on the board or use the touch zone.</p>
       </section>
     </main>
   </body>
