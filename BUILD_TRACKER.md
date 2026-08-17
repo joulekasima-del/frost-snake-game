@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 2 - Desktop playtest complete.
+Stage 3 - GitHub Pages mobile playtest deployment.
 
 ## Completed
 
@@ -18,11 +18,16 @@ Stage 2 - Desktop playtest complete.
 - Movement, food, scoring, collision, pause, and restart work.
 - Original visual design is retained without the object-clarity legend.
 - Stage 2 is complete.
+- GitHub Pages is enabled for `main` from the repository root.
+- Public URL verified: `https://joulekasima-del.github.io/frost-snake-game/`.
+- Verified `index.html`, `styles.css`, and `game.js` load from GitHub Pages.
+- Desktop smoke test passed on the deployed site: Start, Pause, Restart, canvas presence, CSS loading, and no console errors.
+- Confirmed common local-only paths such as `.git/config` and `.DS_Store` are not exposed by GitHub Pages.
 
 ## Status
 
-Desktop playtest is complete and the original gameplay screen is retained.
+GitHub Pages deployment is live and ready for mobile playtesting.
 
 ## Next Best Action
 
-Prepare for GitHub Pages mobile testing.
+Open the GitHub Pages URL on a phone and test mobile layout, swipe controls, on-screen direction buttons, scoring, pause, and restart.
