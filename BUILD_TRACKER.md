@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 5 - Mobile one-screen quick-play layout.
+Stage 6 - Frost Snake home-screen icon and web app identity.
 
 ## Completed
 
@@ -31,12 +31,15 @@ Stage 5 - Mobile one-screen quick-play layout.
 - Mobile layout now uses the dynamic viewport height, compact spacing, and responsive board sizing so the header, stats, board, Pause/Restart, and full D-pad fit in one mobile viewport.
 - Verified no horizontal or vertical page scrolling at `360x640`, `390x664`, `390x720`, `430x740`, `640x360`, `844x390`, and `932x430`.
 - Verified the circular right-thumb D-pad remains at least `56x56` CSS pixels, Ready and Frozen overlays remain usable, and desktop layout remains unchanged.
-- Final real-phone confirmation is pending.
+- Stage 6 app icon and web app identity deployed to GitHub Pages.
+- Added `manifest.webmanifest` plus `512x512`, `192x192`, `180x180`, and `32x32` Frost Snake icon assets.
+- Verified the live manifest and icon URLs return HTTP 200 and the live icon files have the expected pixel dimensions.
+- Final Brave home-screen confirmation is pending.
 
 ## Status
 
-Stage 5 deployment is live and ready for final real-phone confirmation.
+Stage 6 deployment is live and ready for Brave home-screen installation testing.
 
 ## Next Best Action
 
-Open the GitHub Pages URL on a phone and confirm the complete quick-play interface fits without scrolling in portrait and landscape.
+Remove the old Brave home-screen shortcut, add Frost Snake again from the live GitHub Pages URL, and confirm the new Frost Snake icon appears.
