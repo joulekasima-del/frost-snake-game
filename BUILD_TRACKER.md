@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 7 - Installed-app thumb-zone controls.
+Stage 8 - Larger rounded-square D-pad.
 
 ## Completed
 
@@ -37,12 +37,15 @@ Stage 7 - Installed-app thumb-zone controls.
 - Stage 7 standalone thumb-zone adjustment deployed to GitHub Pages.
 - Installed-app portrait mode now uses the extra dynamic viewport space to push the complete D-pad lower while preserving the normal browser-tab layout.
 - Verified normal mobile browser-tab layout, simulated standalone portrait placement, landscape layout, desktop layout, and gameplay regression checks.
-- Real installed-app confirmation is pending.
+- Stage 8 larger rounded-square D-pad deployed to GitHub Pages.
+- Replaced mobile circular direction buttons with larger rounded-square controls while preserving right alignment and standalone lower-right thumb placement.
+- Verified normal mobile browser-tab layout, simulated standalone portrait placement, representative landscape viewports, desktop layout, near-corner button clicks, and gameplay regression checks.
+- Real-phone confirmation is pending.
 
 ## Status
 
-Stage 7 deployment is live and ready for installed-app thumb-zone testing.
+Stage 8 deployment is live and ready for real-phone D-pad confirmation.
 
 ## Next Best Action
 
-Refresh the already-installed Brave app and confirm the D-pad rests lower in the bottom-right thumb zone without scrolling or overlap.
+Close and reopen the installed Brave app, then confirm the larger rounded-square D-pad is easy to press, stays lower-right, and does not introduce scrolling or overlap.
