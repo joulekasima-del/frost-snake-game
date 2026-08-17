@@ -19,6 +19,7 @@ const overlayText = document.getElementById("overlayText");
 const startButton = document.getElementById("startButton");
 const pauseButton = document.getElementById("pauseButton");
 const restartButton = document.getElementById("restartButton");
+const slidePad = document.getElementById("slidePad");
 
 const directions = {
   up: { x: 0, y: -1 },
@@ -43,6 +44,11 @@ let accumulator = 0;
 let lastFrame = 0;
 let pulse = 0;
 let touchStart = null;
+let slideGesture = null;
+let slideFlashTimeout = 0;
+
+const SLIDE_THRESHOLD = 26;
+const SLIDE_PUCK_LIMIT = 30;
 
 function sameCell(a, b) {
   return a.x === b.x && a.y === b.y;
@@ -498,6 +504,144 @@ function handleTouchEnd(event) {
   touchStart = null;
 }
 
+function getSlideDirection(dx, dy) {
+  const absX = Math.abs(dx);
+  const absY = Math.abs(dy);
+
+  if (Math.max(absX, absY) < SLIDE_THRESHOLD) {
+    return null;
+  }
+
+  if (absX > absY) {
+    return dx > 0 ? "right" : "left";
+  }
+
+  return dy > 0 ? "down" : "up";
+}
+
+function updateSlidePuck(dx, dy) {
+  if (!slidePad) {
+    return;
+  }
+
+  const x = Math.max(-SLIDE_PUCK_LIMIT, Math.min(SLIDE_PUCK_LIMIT, dx * 0.36));
+  const y = Math.max(-SLIDE_PUCK_LIMIT, Math.min(SLIDE_PUCK_LIMIT, dy * 0.36));
+  const recognized = getSlideDirection(dx, dy);
+
+  slidePad.style.setProperty("--puck-x", `${x}px`);
+  slidePad.style.setProperty("--puck-y", `${y}px`);
+
+  if (recognized) {
+    slidePad.dataset.activeDir = recognized;
+  } else {
+    delete slidePad.dataset.activeDir;
+  }
+}
+
+function resetSlidePadFeedback() {
+  if (!slidePad) {
+    return;
+  }
+
+  slidePad.classList.remove("is-dragging");
+  slidePad.style.setProperty("--puck-x", "0px");
+  slidePad.style.setProperty("--puck-y", "0px");
+  delete slidePad.dataset.activeDir;
+}
+
+function flashSlidePadAccepted(directionName) {
+  if (!slidePad) {
+    return;
+  }
+
+  if (slideFlashTimeout) {
+    window.clearTimeout(slideFlashTimeout);
+  }
+
+  slidePad.dataset.activeDir = directionName;
+  slidePad.classList.add("is-accepted");
+
+  slideFlashTimeout = window.setTimeout(() => {
+    slidePad.classList.remove("is-accepted");
+    delete slidePad.dataset.activeDir;
+    slideFlashTimeout = 0;
+  }, 150);
+}
+
+function handleSlidePointerDown(event) {
+  if (!slidePad || slideGesture) {
+    return;
+  }
+
+  event.preventDefault();
+
+  if (slideFlashTimeout) {
+    window.clearTimeout(slideFlashTimeout);
+    slideFlashTimeout = 0;
+  }
+
+  slidePad.classList.remove("is-accepted");
+  slideGesture = {
+    pointerId: event.pointerId,
+    startX: event.clientX,
+    startY: event.clientY,
+  };
+
+  slidePad.classList.add("is-dragging");
+  slidePad.focus({ preventScroll: true });
+  updateSlidePuck(0, 0);
+
+  if (slidePad.setPointerCapture) {
+    slidePad.setPointerCapture(event.pointerId);
+  }
+}
+
+function handleSlidePointerMove(event) {
+  if (!slideGesture || event.pointerId !== slideGesture.pointerId) {
+    return;
+  }
+
+  event.preventDefault();
+  updateSlidePuck(event.clientX - slideGesture.startX, event.clientY - slideGesture.startY);
+}
+
+function endSlideGesture(event) {
+  if (!slideGesture || event.pointerId !== slideGesture.pointerId) {
+    return;
+  }
+
+  event.preventDefault();
+
+  const dx = event.clientX - slideGesture.startX;
+  const dy = event.clientY - slideGesture.startY;
+  const directionName = getSlideDirection(dx, dy);
+
+  if (slidePad && slidePad.releasePointerCapture && slidePad.hasPointerCapture?.(event.pointerId)) {
+    slidePad.releasePointerCapture(event.pointerId);
+  }
+
+  slideGesture = null;
+  resetSlidePadFeedback();
+
+  if (directionName) {
+    setDirection(directionName);
+    flashSlidePadAccepted(directionName);
+  }
+}
+
+function cancelSlideGesture(event) {
+  if (!slideGesture || event.pointerId !== slideGesture.pointerId) {
+    return;
+  }
+
+  if (slidePad && slidePad.releasePointerCapture && slidePad.hasPointerCapture?.(event.pointerId)) {
+    slidePad.releasePointerCapture(event.pointerId);
+  }
+
+  slideGesture = null;
+  resetSlidePadFeedback();
+}
+
 document.addEventListener("keydown", handleKey);
 window.addEventListener("resize", () => {
   resizeCanvas();
@@ -512,9 +656,13 @@ document.addEventListener("visibilitychange", () => {
 canvas.addEventListener("touchstart", handleTouchStart, { passive: true });
 canvas.addEventListener("touchend", handleTouchEnd, { passive: true });
 
-document.querySelectorAll("[data-dir]").forEach((button) => {
-  button.addEventListener("click", () => setDirection(button.dataset.dir));
-});
+if (slidePad) {
+  slidePad.addEventListener("pointerdown", handleSlidePointerDown);
+  slidePad.addEventListener("pointermove", handleSlidePointerMove);
+  slidePad.addEventListener("pointerup", endSlideGesture);
+  slidePad.addEventListener("pointercancel", cancelSlideGesture);
+  slidePad.addEventListener("lostpointercapture", cancelSlideGesture);
+}
 
 startButton.addEventListener("click", startGame);
 pauseButton.addEventListener("click", pauseGame);
