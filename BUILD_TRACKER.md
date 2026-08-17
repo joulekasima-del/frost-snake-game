@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 4 - Mobile controls and interface alignment.
+Stage 5 - Mobile one-screen quick-play layout.
 
 ## Completed
 
@@ -27,12 +27,16 @@ Stage 4 - Mobile controls and interface alignment.
 - Direction buttons are larger circular touch targets, right-aligned for thumb reach, and spaced consistently.
 - Mobile interface rail alignment verified at 360, 390, and 430 CSS-pixel portrait widths plus matching landscape checks.
 - Verified movement, D-pad direction input, rapid direction changes, swipe movement, food, score, growth, collision, pause, restart, Play Again, modal readability, and desktop layout preservation.
+- Stage 5 one-screen mobile layout deployed to GitHub Pages.
+- Mobile layout now uses the dynamic viewport height, compact spacing, and responsive board sizing so the header, stats, board, Pause/Restart, and full D-pad fit in one mobile viewport.
+- Verified no horizontal or vertical page scrolling at `360x640`, `390x664`, `390x720`, `430x740`, `640x360`, `844x390`, and `932x430`.
+- Verified the circular right-thumb D-pad remains at least `56x56` CSS pixels, Ready and Frozen overlays remain usable, and desktop layout remains unchanged.
 - Final real-phone confirmation is pending.
 
 ## Status
 
-Stage 4 deployment is live and ready for final real-phone confirmation.
+Stage 5 deployment is live and ready for final real-phone confirmation.
 
 ## Next Best Action
 
-Open the GitHub Pages URL on a phone and confirm the larger right-aligned circular controls feel correct in portrait and landscape.
+Open the GitHub Pages URL on a phone and confirm the complete quick-play interface fits without scrolling in portrait and landscape.
