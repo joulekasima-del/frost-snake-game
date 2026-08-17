@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 1 - Playable prototype and GitHub setup.
+Stage 2 - Desktop playtest complete.
 
 ## Completed
 
@@ -14,11 +14,15 @@ Stage 1 - Playable prototype and GitHub setup.
 - Committed the existing playable prototype.
 - Pushed `main` to GitHub without overwriting remote work.
 - Verified the pushed `main` branch exists on GitHub.
+- Desktop playtest passed.
+- Movement, food, scoring, collision, pause, and restart work.
+- Original visual design is retained without the object-clarity legend.
+- Stage 2 is complete.
 
 ## Status
 
-GitHub setup is complete.
+Desktop playtest is complete and the original gameplay screen is retained.
 
 ## Next Best Action
 
-Continue Stage 2 planning: choose the next gameplay or polish improvement and implement it in a focused branch.
+Prepare for GitHub Pages mobile testing.
