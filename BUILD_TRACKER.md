@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 9 - Horizontally centered D-pad.
+Stage 10 - Frost Slide Pad controller.
 
 ## Completed
 
@@ -43,12 +43,15 @@ Stage 9 - Horizontally centered D-pad.
 - Stage 9 horizontally centered mobile D-pad deployed to GitHub Pages.
 - Centered the complete mobile D-pad while preserving button size, spacing, shape, arrangement, one-screen layout, short-height fallback, and Stage 7 standalone vertical placement.
 - Verified normal mobile browser-tab layout, simulated standalone portrait placement, representative landscape behavior, desktop layout preservation, live GitHub Pages assets, and gameplay regression checks.
+- Stage 10 Frost Slide Pad deployed to GitHub Pages.
+- Replaced the mobile four-button D-pad with a single framed `SLIDE TO STEER` controller using pointer gestures, a deliberate movement threshold, dominant-axis direction resolution, edge-arrow feedback, and a central frosted puck.
+- Verified all four slide directions, diagonal resolution, below-threshold rejection, alternating pointer input, pointer cancellation reset, board swipe preservation, keyboard input, normal browser layout, simulated standalone layout, landscape layout, desktop layout preservation, live GitHub Pages assets, and gameplay regression checks.
 - Real-phone confirmation is pending.
 
 ## Status
 
-Stage 9 deployment is live and ready for real-phone centered-D-pad confirmation.
+Stage 10 deployment is live and ready for real-phone Frost Slide Pad gesture confirmation.
 
 ## Next Best Action
 
-Close and reopen the installed Brave app, then confirm the centered rounded-square D-pad is easy to press and does not introduce scrolling, clipping, or overlap.
+Close and reopen the installed Brave app, then confirm the Frost Slide Pad steers comfortably with either thumb and does not introduce scrolling, clipping, or overlap.
