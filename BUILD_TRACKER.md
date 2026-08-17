@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 6 - Frost Snake home-screen icon and web app identity.
+Stage 7 - Installed-app thumb-zone controls.
 
 ## Completed
 
@@ -34,12 +34,15 @@ Stage 6 - Frost Snake home-screen icon and web app identity.
 - Stage 6 app icon and web app identity deployed to GitHub Pages.
 - Added `manifest.webmanifest` plus `512x512`, `192x192`, `180x180`, and `32x32` Frost Snake icon assets.
 - Verified the live manifest and icon URLs return HTTP 200 and the live icon files have the expected pixel dimensions.
-- Final Brave home-screen confirmation is pending.
+- Stage 7 standalone thumb-zone adjustment deployed to GitHub Pages.
+- Installed-app portrait mode now uses the extra dynamic viewport space to push the complete D-pad lower while preserving the normal browser-tab layout.
+- Verified normal mobile browser-tab layout, simulated standalone portrait placement, landscape layout, desktop layout, and gameplay regression checks.
+- Real installed-app confirmation is pending.
 
 ## Status
 
-Stage 6 deployment is live and ready for Brave home-screen installation testing.
+Stage 7 deployment is live and ready for installed-app thumb-zone testing.
 
 ## Next Best Action
 
-Remove the old Brave home-screen shortcut, add Frost Snake again from the live GitHub Pages URL, and confirm the new Frost Snake icon appears.
+Refresh the already-installed Brave app and confirm the D-pad rests lower in the bottom-right thumb zone without scrolling or overlap.
