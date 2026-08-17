@@ -238,6 +238,11 @@ canvas {
   filter: brightness(1.08);
 }
 
+.dpad button:active {
+  filter: brightness(1.14);
+  transform: translateY(1px);
+}
+
 .action-row button:focus-visible,
 .dpad button:focus-visible,
 .primary-button:focus-visible {
@@ -304,9 +309,9 @@ canvas {
     --mobile-safe-left: env(safe-area-inset-left, 0px);
     --mobile-pad: clamp(8px, 2.8vw, 12px);
     --mobile-gap: clamp(5px, 1.8vw, 8px);
-    --mobile-control: clamp(56px, 15vw, 64px);
-    --mobile-dpad-gap: clamp(8px, 2.8vw, 12px);
-    --mobile-play-width: min(100%, max(280px, calc(100dvh - 316px)));
+    --mobile-control: clamp(72px, 20vw, 84px);
+    --mobile-dpad-gap: clamp(12px, 3.5vw, 16px);
+    --mobile-play-width: min(100%, max(280px, calc(100dvh - 382px)));
     display: grid;
     grid-template-rows: auto auto auto;
     justify-items: center;
@@ -406,7 +411,7 @@ canvas {
   .controls {
     grid-template-columns: 1fr;
     justify-items: stretch;
-    width: var(--mobile-play-width);
+    width: 100%;
     gap: var(--mobile-gap);
     margin-top: 0;
   }
@@ -439,8 +444,8 @@ canvas {
     width: var(--mobile-control);
     height: var(--mobile-control);
     padding: 0;
-    border-radius: 50%;
-    font-size: 1.42rem;
+    border-radius: 14px;
+    font-size: clamp(1.62rem, 7.2vw, 1.88rem);
     line-height: 1;
     touch-action: none;
   }
@@ -485,8 +490,8 @@ canvas {
     --landscape-safe-left: env(safe-area-inset-left, 0px);
     --landscape-pad: clamp(8px, 2vw, 12px);
     --landscape-gap: clamp(6px, 1.7vw, 10px);
-    --landscape-control: 56px;
-    --landscape-dpad-gap: 10px;
+    --landscape-control: clamp(56px, 8vw, 72px);
+    --landscape-dpad-gap: clamp(10px, 1.8vw, 14px);
     --landscape-controls-width: calc((var(--landscape-control) * 3) + (var(--landscape-dpad-gap) * 2));
     --landscape-board-size: min(calc(100dvh - 126px), calc(100vw - var(--landscape-controls-width) - 64px));
     display: grid;
@@ -635,8 +640,8 @@ canvas {
     width: var(--landscape-control);
     height: var(--landscape-control);
     padding: 0;
-    border-radius: 50%;
-    font-size: 1.32rem;
+    border-radius: 14px;
+    font-size: clamp(1.52rem, 4vw, 1.82rem);
     line-height: 1;
     touch-action: none;
   }
