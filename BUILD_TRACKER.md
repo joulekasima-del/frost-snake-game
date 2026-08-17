@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 1 - Playable prototype and GitHub setup.
+Stage 2 - First gameplay bugfix.
 
 ## Completed
 
@@ -14,11 +14,17 @@ Stage 1 - Playable prototype and GitHub setup.
 - Committed the existing playable prototype.
 - Pushed `main` to GitHub without overwriting remote work.
 - Verified the pushed `main` branch exists on GitHub.
+- Started bugfix branch `fix/food-scoring`.
+- Reproduced food scoring in a controlled harness and confirmed exact-cell scoring works.
+- Confirmed the reported playtest issue came from food visual ambiguity: the glow could appear reachable from adjacent cells while scoring correctly required the snake head to enter the food grid cell.
+- Updated the food drawing so the collectible grid cell is visibly marked.
+- Added a regression test for eating one white food orb.
+- Verified `node --check game.js`, `node --check tests/food-scoring.test.js`, and `node tests/food-scoring.test.js`.
 
 ## Status
 
-GitHub setup is complete.
+Food scoring bugfix is verified locally and awaiting push.
 
 ## Next Best Action
 
-Continue Stage 2 planning: choose the next gameplay or polish improvement and implement it in a focused branch.
+Push `fix/food-scoring` and open the fixed game for desktop playtest.

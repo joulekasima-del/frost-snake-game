@@ -339,10 +339,25 @@ function drawObstacle(block) {
 function drawFood(now) {
   const cx = (food.x + 0.5) * cellSize;
   const cy = (food.y + 0.5) * cellSize;
+  const inset = cellSize * 0.12;
+  const x = food.x * cellSize + inset;
+  const y = food.y * cellSize + inset;
+  const size = cellSize - inset * 2;
   const glow = 0.5 + Math.sin(now / 220) * 0.14;
 
   ctx.save();
-  ctx.shadowBlur = 28;
+  ctx.shadowBlur = 12;
+  ctx.shadowColor = "rgba(221, 252, 255, 0.6)";
+  ctx.fillStyle = "rgba(221, 252, 255, 0.12)";
+  ctx.strokeStyle = "rgba(233, 251, 255, 0.82)";
+  ctx.lineWidth = Math.max(1, cellSize * 0.06);
+  roundedRect(x, y, size, size, 4);
+  ctx.fill();
+  ctx.stroke();
+  ctx.restore();
+
+  ctx.save();
+  ctx.shadowBlur = 16;
   ctx.shadowColor = "rgba(221, 252, 255, 0.95)";
   ctx.fillStyle = `rgba(232, 253, 255, ${0.85 + glow * 0.12})`;
   ctx.beginPath();
