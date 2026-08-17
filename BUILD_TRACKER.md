@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-Stage 8 - Larger rounded-square D-pad.
+Stage 9 - Horizontally centered D-pad.
 
 ## Completed
 
@@ -40,12 +40,15 @@ Stage 8 - Larger rounded-square D-pad.
 - Stage 8 larger rounded-square D-pad deployed to GitHub Pages.
 - Replaced mobile circular direction buttons with larger rounded-square controls while preserving right alignment and standalone lower-right thumb placement.
 - Verified normal mobile browser-tab layout, simulated standalone portrait placement, representative landscape viewports, desktop layout, near-corner button clicks, and gameplay regression checks.
+- Stage 9 horizontally centered mobile D-pad deployed to GitHub Pages.
+- Centered the complete mobile D-pad while preserving button size, spacing, shape, arrangement, one-screen layout, short-height fallback, and Stage 7 standalone vertical placement.
+- Verified normal mobile browser-tab layout, simulated standalone portrait placement, representative landscape behavior, desktop layout preservation, live GitHub Pages assets, and gameplay regression checks.
 - Real-phone confirmation is pending.
 
 ## Status
 
-Stage 8 deployment is live and ready for real-phone D-pad confirmation.
+Stage 9 deployment is live and ready for real-phone centered-D-pad confirmation.
 
 ## Next Best Action
 
-Close and reopen the installed Brave app, then confirm the larger rounded-square D-pad is easy to press, stays lower-right, and does not introduce scrolling or overlap.
+Close and reopen the installed Brave app, then confirm the centered rounded-square D-pad is easy to press and does not introduce scrolling, clipping, or overlap.
