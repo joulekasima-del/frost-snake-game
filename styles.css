@@ -288,46 +288,145 @@ canvas {
 }
 
 @media (max-width: 720px) {
+  html,
+  body {
+    width: 100%;
+    min-height: 100dvh;
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
   .game-shell {
-    padding: clamp(16px, 4.4vw, 18px);
+    --mobile-safe-top: env(safe-area-inset-top, 0px);
+    --mobile-safe-right: env(safe-area-inset-right, 0px);
+    --mobile-safe-bottom: env(safe-area-inset-bottom, 0px);
+    --mobile-safe-left: env(safe-area-inset-left, 0px);
+    --mobile-pad: clamp(8px, 2.8vw, 12px);
+    --mobile-gap: clamp(5px, 1.8vw, 8px);
+    --mobile-control: clamp(56px, 15vw, 64px);
+    --mobile-dpad-gap: clamp(8px, 2.8vw, 12px);
+    --mobile-play-width: min(100%, max(280px, calc(100dvh - 316px)));
+    display: grid;
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    align-content: start;
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+    padding:
+      calc(var(--mobile-safe-top) + var(--mobile-pad))
+      calc(var(--mobile-safe-right) + var(--mobile-pad))
+      calc(var(--mobile-safe-bottom) + var(--mobile-pad))
+      calc(var(--mobile-safe-left) + var(--mobile-pad));
+    gap: var(--mobile-gap);
+    overflow: hidden;
   }
 
   .hud {
     display: grid;
     align-items: stretch;
-    gap: 12px;
+    width: var(--mobile-play-width);
+    gap: var(--mobile-gap);
+    margin-bottom: 0;
+  }
+
+  .eyebrow {
+    margin-bottom: 2px;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+
+  h1 {
+    font-size: clamp(1.28rem, 6vw, 1.62rem);
+    line-height: 0.96;
   }
 
   .stats {
     width: 100%;
+    min-width: 0;
+    gap: 6px;
+  }
+
+  .stats div {
+    padding: 5px 7px;
+  }
+
+  .stats dt {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+  }
+
+  .stats dd {
+    margin-top: 1px;
+    font-size: clamp(0.82rem, 3.4vw, 0.98rem);
+  }
+
+  .board-card {
+    width: var(--mobile-play-width);
+  }
+
+  .board-header {
+    min-height: 30px;
+    padding: 6px 10px;
     gap: 8px;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
   }
 
   .board-wrap {
     max-height: none;
   }
 
+  .overlay {
+    padding: 10px;
+  }
+
+  .overlay > div {
+    width: min(300px, 100%);
+    padding: 12px;
+  }
+
+  .overlay p:first-child {
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+  }
+
+  .overlay h2 {
+    margin-top: 6px;
+    font-size: clamp(1rem, 4.8vw, 1.16rem);
+  }
+
+  .overlay p:not(:first-child) {
+    margin-top: 6px;
+    font-size: 0.82rem;
+    line-height: 1.32;
+  }
+
   .controls {
     grid-template-columns: 1fr;
     justify-items: stretch;
-    width: 100%;
-    gap: 16px;
-    margin-top: 16px;
+    width: var(--mobile-play-width);
+    gap: var(--mobile-gap);
+    margin-top: 0;
   }
 
   .action-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
-    gap: 10px;
+    gap: 8px;
   }
 
   .action-row button {
-    flex: 1 1 120px;
+    min-height: 38px;
+    padding: 0 12px;
   }
 
   .dpad {
-    grid-template-columns: repeat(3, clamp(56px, 18vw, 72px));
-    grid-template-rows: repeat(2, clamp(56px, 18vw, 72px));
-    gap: clamp(12px, 3.5vw, 16px);
+    grid-template-columns: repeat(3, var(--mobile-control));
+    grid-template-rows: repeat(2, var(--mobile-control));
+    gap: var(--mobile-dpad-gap);
     justify-self: end;
     touch-action: none;
   }
@@ -337,57 +436,175 @@ canvas {
     place-items: center;
     min-width: 56px;
     min-height: 56px;
-    width: clamp(56px, 18vw, 72px);
-    height: clamp(56px, 18vw, 72px);
+    width: var(--mobile-control);
+    height: var(--mobile-control);
     padding: 0;
     border-radius: 50%;
-    font-size: 1.55rem;
+    font-size: 1.42rem;
     line-height: 1;
     touch-action: none;
   }
 
   .control-note {
-    text-align: left;
+    display: none;
   }
 }
 
 @media (max-height: 480px) and (max-width: 960px) {
+  html,
+  body {
+    width: 100%;
+    min-height: 100dvh;
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
   .game-shell {
-    padding: clamp(16px, 2.5vw, 24px);
+    --landscape-safe-top: env(safe-area-inset-top, 0px);
+    --landscape-safe-right: env(safe-area-inset-right, 0px);
+    --landscape-safe-bottom: env(safe-area-inset-bottom, 0px);
+    --landscape-safe-left: env(safe-area-inset-left, 0px);
+    --landscape-pad: clamp(8px, 2vw, 12px);
+    --landscape-gap: clamp(6px, 1.7vw, 10px);
+    --landscape-control: 56px;
+    --landscape-dpad-gap: 10px;
+    --landscape-controls-width: calc((var(--landscape-control) * 3) + (var(--landscape-dpad-gap) * 2));
+    --landscape-board-size: min(calc(100dvh - 126px), calc(100vw - var(--landscape-controls-width) - 64px));
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--landscape-controls-width);
+    grid-template-rows: auto minmax(0, 1fr);
+    align-content: start;
+    align-items: start;
+    justify-items: stretch;
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+    padding:
+      calc(var(--landscape-safe-top) + var(--landscape-pad))
+      calc(var(--landscape-safe-right) + var(--landscape-pad))
+      calc(var(--landscape-safe-bottom) + var(--landscape-pad))
+      calc(var(--landscape-safe-left) + var(--landscape-pad));
+    gap: var(--landscape-gap) 12px;
+    overflow: hidden;
   }
 
   .hud {
     display: grid;
     align-items: stretch;
-    gap: 12px;
+    grid-column: 1 / -1;
+    width: 100%;
+    gap: 6px;
+    margin-bottom: 0;
+  }
+
+  .hud > div:first-child {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .eyebrow {
+    margin: 0;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+
+  h1 {
+    font-size: clamp(1.15rem, 4vw, 1.55rem);
+    line-height: 0.96;
   }
 
   .stats {
     width: 100%;
+    min-width: 0;
+    gap: 6px;
+  }
+
+  .stats div {
+    padding: 4px 7px;
+  }
+
+  .stats dt {
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+  }
+
+  .stats dd {
+    margin-top: 0;
+    font-size: 0.86rem;
+  }
+
+  .board-card {
+    grid-column: 1;
+    width: max(220px, var(--landscape-board-size));
+    justify-self: end;
+  }
+
+  .board-header {
+    min-height: 28px;
+    padding: 5px 9px;
     gap: 8px;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+
+  .board-wrap {
+    max-height: none;
+  }
+
+  .overlay {
+    padding: 8px;
+  }
+
+  .overlay > div {
+    width: min(280px, 100%);
+    padding: 10px;
+  }
+
+  .overlay p:first-child {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+  }
+
+  .overlay h2 {
+    margin-top: 5px;
+    font-size: clamp(0.95rem, 3vw, 1.12rem);
+  }
+
+  .overlay p:not(:first-child) {
+    margin-top: 5px;
+    font-size: 0.78rem;
+    line-height: 1.25;
   }
 
   .controls {
+    grid-column: 2;
+    grid-row: 2;
     grid-template-columns: 1fr;
     justify-items: stretch;
-    width: 100%;
-    gap: 16px;
-    margin-top: 16px;
+    width: var(--landscape-controls-width);
+    gap: var(--landscape-gap);
+    margin-top: 0;
   }
 
   .action-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
-    gap: 10px;
+    gap: 8px;
   }
 
   .action-row button {
-    flex: 1 1 120px;
+    min-height: 38px;
+    padding: 0 8px;
+    font-size: 0.88rem;
   }
 
   .dpad {
-    grid-template-columns: repeat(3, 72px);
-    grid-template-rows: repeat(2, 72px);
-    gap: 16px;
+    grid-template-columns: repeat(3, var(--landscape-control));
+    grid-template-rows: repeat(2, var(--landscape-control));
+    gap: var(--landscape-dpad-gap);
     justify-self: end;
     touch-action: none;
   }
@@ -397,17 +614,17 @@ canvas {
     place-items: center;
     min-width: 56px;
     min-height: 56px;
-    width: 72px;
-    height: 72px;
+    width: var(--landscape-control);
+    height: var(--landscape-control);
     padding: 0;
     border-radius: 50%;
-    font-size: 1.55rem;
+    font-size: 1.32rem;
     line-height: 1;
     touch-action: none;
   }
 
   .control-note {
-    text-align: left;
+    display: none;
   }
 }
 
@@ -417,10 +634,10 @@ canvas {
   }
 
   .stats div {
-    padding: 7px;
+    padding: 5px 6px;
   }
 
   .stats dd {
-    font-size: 1rem;
+    font-size: 0.94rem;
   }
 }
