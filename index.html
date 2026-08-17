@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050914">
+    <title>Frost Snake</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell" aria-labelledby="game-title">
+      <header class="hud">
+        <div>
+          <p class="eyebrow">Arcade prototype</p>
+          <h1 id="game-title">Frost Snake</h1>
+        </div>
+
+        <dl class="stats" aria-live="polite">
+          <div>
+            <dt>Level</dt>
+            <dd id="levelValue">1</dd>
+          </div>
+          <div>
+            <dt>Score</dt>
+            <dd id="scoreValue">000</dd>
+          </div>
+          <div>
+            <dt>Best</dt>
+            <dd id="bestValue">000</dd>
+          </div>
+        </dl>
+      </header>
+
+      <section class="board-card" aria-label="Frost Snake play area">
+        <div class="board-header">
+          <span>Frost snake</span>
+          <span id="statusText">Ready</span>
+        </div>
+
+        <div class="board-wrap">
+          <canvas id="gameCanvas" width="840" height="840" aria-label="Frost Snake game board"></canvas>
+          <div class="overlay" id="gameOverlay">
+            <div>
+              <p id="overlayKicker">Ready</p>
+              <h2 id="overlayTitle">Guide the frost snake.</h2>
+              <p id="overlayText">Eat the glowing frost orbs, avoid the wall, blue ice blocks, and your own trail.</p>
+              <button class="primary-button" type="button" id="startButton">Start game</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Game controls">
+        <div class="action-row">
+          <button type="button" id="pauseButton">Pause</button>
+          <button type="button" id="restartButton">Restart</button>
+        </div>
+
+        <div class="dpad" aria-label="Mobile direction controls">
+          <button type="button" data-dir="up" aria-label="Move up">&uarr;</button>
+          <button type="button" data-dir="left" aria-label="Move left">&larr;</button>
+          <button type="button" data-dir="down" aria-label="Move down">&darr;</button>
+          <button type="button" data-dir="right" aria-label="Move right">&rarr;</button>
+        </div>
+
+        <p class="control-note">Desktop: arrow keys or WASD. Mobile: swipe on the board or use the direction buttons.</p>
+      </section>
+    </main>
+  </body>
+</html>
